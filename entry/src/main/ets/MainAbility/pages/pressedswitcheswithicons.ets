@@ -6,13 +6,13 @@ struct Index {
   @State message: string = 'Hello World'
   @State buttonPositionX: number = 2
   @State buttonSize: number= 28
-  @State buttonColor1: string = "rgba(121,116,126,1.0)"
+  @State buttonColor1: string = "rgba(73,69,79,1.0)"
   @State buttonColor2: string = "rgb(231,224,236)"
   @State iconColor:string = "rgb(255,255,255)"
   @State iconPositionX:number = 12
   @State iconPositionY:number = 13
   @State shadowPosition: number = 2
-  @State borderColor: string="rgba(73,69,79,1.0)"
+  @State borderColor: string="rgba(121,116,126,1.0)"
   build() {
     Row(){
       Column(){
@@ -46,7 +46,7 @@ struct Index {
           }
           else {
             this.buttonPositionX = 2
-            this.buttonColor1 = "rgba(121,116,126,1.0)"
+            this.buttonColor1 = "rgba(73,69,79,1.0)"
             this.buttonColor2 = "rgb(231,224,236)"
             this.iconColor="rgb(255,255,255)"
             this.iconPositionX=12
