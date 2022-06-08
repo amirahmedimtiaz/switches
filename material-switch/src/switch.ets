@@ -13,21 +13,24 @@
  * limitations under the License.
  */
 
+import switchModel from "./switchModel"
+
 
 @Component
 export struct Switch {
-  @Prop switchId: number
-  @State buttonPositionX: number = 5
-  @State buttonSize: number= 16
-  @Prop  buttonColor1: string
-  @Prop  buttonColor2: string
-  @Prop  withIcon: boolean
-  @State isSelected: boolean = false
-  @State iconColor: string = "rgb(255,255,255)"
-  @State iconPositionX: number = 9
-  @State iconPositionY: number = 13
-  @State borderColor: string= "rgba(117,126,118,1.0)"
-  @State shadowPosition: number = 2.5
+  @State model: switchModel.Model = new switchModel.Model();
+//  @Prop switchId: number
+//  @State buttonPositionX: number = 5
+//  @State buttonSize: number= 16
+//  @Prop  buttonColor1: string
+//  @Prop  buttonColor2: string
+//  @Prop  withIcon: boolean
+//  @State isSelected: boolean = false
+//  @State iconColor: string = "rgb(255,255,255)"
+//  @State iconPositionX: number = 9
+//  @State iconPositionY: number = 13
+//  @State borderColor: string= "rgba(117,126,118,1.0)"
+//  @State shadowPosition: number = 2.5
   private onSelect: ((id: number) => void) = null
 
 
@@ -36,70 +39,72 @@ export struct Switch {
       Button()
         .width(52)
         .height(32)
-        .backgroundColor(this.buttonColor2)
-        .borderColor(this.isSelected ? this.borderColor : this.buttonColor1)
+        .backgroundColor(this.model.buttonColor2)
+        .borderColor(this.model.isSelected ? this.model.borderColor : this.model.buttonColor1)
         .borderWidth(2)
         .borderRadius(2)
-      if (this.isSelected) {
+      if (this.model.isSelected) {
         Circle()
           .width(38).height(38).fill("rgba(0,0,0,0.3)")
-          .offset({ x: this.shadowPosition - 6, y: -3 })
+          .offset({ x: this.model.shadowPosition - 6, y: -3 })
       }
 
       Circle()
-        .width(this.isSelected ? 28 : this.buttonSize)
-        .height(this.isSelected ? 28 : this.buttonSize)
+        .width(this.model.isSelected ? 28 : this.model.buttonSize)
+        .height(this.model.isSelected ? 28 : this.model.buttonSize)
         .offset({
-          x: this.isSelected ? this.buttonPositionX - 3 : this.buttonPositionX,
-          y: this.isSelected ? 2 : (16 - (this.buttonSize) / 2)
+          x: this.model.isSelected ? this.model.buttonPositionX - 3 : this.model.buttonPositionX,
+          y: this.model.isSelected ? 2 : (16 - (this.model.buttonSize) / 2)
         })
-        .fill(this.buttonColor1)
-      if (this.withIcon) {
+        .fill(this.model.buttonColor1)
+      if (this.model.withIcon) {
         Path()
           .commands("M9 22l-10-10.598 2.798-2.859 7.149 7.473 13.144-14.016 2.909 2.806z")
-          .fill(this.iconColor)
-          .offset({ x: this.iconPositionX, y: this.iconPositionY })
+          .fill(this.model.iconColor)
+          .offset({ x: this.model.iconPositionX, y: this.model.iconPositionY })
       }
     }.onClick(() => {
-      this.isSelected = true
-      this.buttonColor1 = "rgba(117,126,118,1.0)"
+      this.model.isSelected = true
+      this.model.buttonColor1 = "rgba(117,126,118,1.0)"
       if (this.onSelect != null) {
-        this.onSelect(this.switchId);
+        this.onSelect(this.model.switchId);
       }
       animateTo({
         duration: 100,
         onFinish: () => {
-          if (this.buttonPositionX == 5) {
-            this.buttonSize = 16
-            this.buttonColor1 = "rgba(117,126,118,1.0)"
+          if (this.model.buttonPositionX == 5) {
+            this.model.buttonSize = 16
+            this.model.buttonColor1 = "rgba(117,126,118,1.0)"
 
           }
           else {
-            this.buttonSize = 24
-            this.buttonColor1 = "rgb(255,255,255)"
-            this.buttonColor2 = "rgba(55,136,62,1.0)"
+            this.model.buttonSize = 24
+            this.model.buttonColor1 = "rgb(255,255,255)"
+            this.model.buttonColor2 = "rgba(55,136,62,1.0)"
           }
-          this.isSelected = false
+          this.model.isSelected = false
         }
       }, () => {
-        if (this.buttonPositionX == 5) {
-          this.buttonPositionX = 23
-          this.shadowPosition = 23
-          if (this.withIcon) {
-            this.iconPositionX = 32
-            this.iconColor = "rgba(55,136,62,1.0)"
+        if (this.model.buttonPositionX == 5) {
+          this.model.buttonPositionX = 23
+          this.model.shadowPosition = 23
+          if (this.model.withIcon) {
+            this.model.iconPositionX = 32
+            this.model.iconColor = "rgba(55,136,62,1.0)"
           }
         }
         else {
-          this.buttonPositionX = 5
-          this.shadowPosition = 2.5
-          this.buttonColor2 = "rgba(216,216,216,1.0)"
-          if (this.withIcon) {
-            this.iconPositionX = 9
-            this.iconColor = "rgba(255,255,255,1.0)"
+          this.model.buttonPositionX = 5
+          this.model.shadowPosition = 2.5
+          this.model.buttonColor2 = "rgba(216,216,216,1.0)"
+          if (this.model.withIcon) {
+            this.model.iconPositionX = 9
+            this.model.iconColor = "rgba(255,255,255,1.0)"
           }
         }
       })
     }).padding(5)
   }
 }
+
+export { switchModel } from "./switchModel";
