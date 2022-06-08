@@ -26,7 +26,7 @@ export struct Switch {
   @State iconColor: string = "rgb(255,255,255)"
   @State iconPositionX: number = 9
   @State iconPositionY: number = 13
-  @State borderColor: string= "rgba(121,116,126,1.0)"
+  @State borderColor: string= "rgba(117,126,118,1.0)"
   @State shadowPosition: number = 2.5
   private onSelect: ((id: number) => void) = null
 
@@ -62,7 +62,7 @@ export struct Switch {
       }
     }.onClick(() => {
       this.isSelected = true
-      this.buttonColor1 = "rgba(121,116,126,1.0)"
+      this.buttonColor1 = "rgba(117,126,118,1.0)"
       if (this.onSelect != null) {
         this.onSelect(this.switchId);
       }
@@ -71,13 +71,13 @@ export struct Switch {
         onFinish: () => {
           if (this.buttonPositionX == 5) {
             this.buttonSize = 16
-            this.buttonColor1 = "rgba(121,116,126,1.0)"
+            this.buttonColor1 = "rgba(117,126,118,1.0)"
 
           }
           else {
             this.buttonSize = 24
             this.buttonColor1 = "rgb(255,255,255)"
-            this.buttonColor2 = "rgba(103,80,164,1.0)"
+            this.buttonColor2 = "rgba(55,136,62,1.0)"
           }
           this.isSelected = false
         }
@@ -87,13 +87,13 @@ export struct Switch {
           this.shadowPosition = 23
           if (this.withIcon) {
             this.iconPositionX = 32
-            this.iconColor = "rgba(103,80,164,1.0)"
+            this.iconColor = "rgba(55,136,62,1.0)"
           }
         }
         else {
           this.buttonPositionX = 5
           this.shadowPosition = 2.5
-          this.buttonColor2 = "rgb(231,224,236)"
+          this.buttonColor2 = "rgba(216,216,216,1.0)"
           if (this.withIcon) {
             this.iconPositionX = 9
             this.iconColor = "rgba(255,255,255,1.0)"

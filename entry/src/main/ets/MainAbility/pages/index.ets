@@ -9,9 +9,9 @@ struct Index {
       Column() {
         Switch({
           switchId:1,
-          buttonColor1:  "rgba(121,116,126,1.0)",
-          buttonColor2: "rgb(231,224,236)",
-          withIcon: false,
+          buttonColor1:  "rgba(117,126,118,1.0)",
+          buttonColor2: "rgba(216,216,216,1.0)",
+          withIcon: true,
           onSelect: (id) => {
             prompt.showToast({
               message: id.toString()
