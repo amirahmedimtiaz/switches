@@ -11,8 +11,7 @@ struct Index {
   updateModelForFirst() {
     this.model.reset()
     this.model.setSwitchId(1)
-    this.model.setButtonColor1("rgba(117,126,118,1.0)")
-    this.model.setButtonColor2("rgba(216,216,216,1.0)")
+    this.model.setButtonColor(null)
     this.model.setWithIcon(true)
   }
   build() {

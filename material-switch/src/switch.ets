@@ -19,18 +19,6 @@ import switchModel from "./switchModel"
 @Component
 export struct Switch {
   @State model: switchModel.Model = new switchModel.Model();
-//  @Prop switchId: number
-//  @State buttonPositionX: number = 5
-//  @State buttonSize: number= 16
-//  @Prop  buttonColor1: string
-//  @Prop  buttonColor2: string
-//  @Prop  withIcon: boolean
-//  @State isSelected: boolean = false
-//  @State iconColor: string = "rgb(255,255,255)"
-//  @State iconPositionX: number = 9
-//  @State iconPositionY: number = 13
-//  @State borderColor: string= "rgba(117,126,118,1.0)"
-//  @State shadowPosition: number = 2.5
   private onSelect: ((id: number) => void) = null
 
 
@@ -80,7 +68,8 @@ export struct Switch {
           else {
             this.model.buttonSize = 24
             this.model.buttonColor1 = "rgb(255,255,255)"
-            this.model.buttonColor2 = "rgba(55,136,62,1.0)"
+            this.model.buttonColor2 = this.model.buttonColor
+//            "rgba(55,136,62,1.0)"
           }
           this.model.isSelected = false
         }
@@ -90,7 +79,7 @@ export struct Switch {
           this.model.shadowPosition = 23
           if (this.model.withIcon) {
             this.model.iconPositionX = 32
-            this.model.iconColor = "rgba(55,136,62,1.0)"
+            this.model.iconColor = this.model.buttonColor
           }
         }
         else {

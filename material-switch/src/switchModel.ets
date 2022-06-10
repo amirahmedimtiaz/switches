@@ -19,8 +19,9 @@ export namespace switchModel {
     switchId: number = 0
     buttonPositionX: number = 5
     buttonSize: number = 16
-    buttonColor1: string = "rgba(117,126,118,1.0)"
-    buttonColor2: string = "rgba(216,216,216,1.0)"
+    buttonColor1: string = ""
+    buttonColor2: string = ""
+    buttonColor: string = ""
     withIcon: boolean = false
     isSelected: boolean = false
     iconColor: string = "rgb(255,255,255)"
@@ -35,15 +36,11 @@ export namespace switchModel {
       return this
     }
 
-    setButtonColor1(buttonColor1: string): Model {
-      this.buttonColor1 = buttonColor1
+    setButtonColor(buttonColor: string): Model {
+      this.buttonColor = buttonColor
       return this
     }
 
-    setButtonColor2(buttonColor2: string): Model {
-      this.buttonColor2 = buttonColor2
-      return this
-    }
 
     setWithIcon(withIcon: boolean): Model {
       this.withIcon = withIcon
@@ -56,6 +53,7 @@ export namespace switchModel {
       this.buttonSize = 16
       this.buttonColor1 = "rgba(117,126,118,1.0)"
       this.buttonColor2 = "rgba(216,216,216,1.0)"
+      this.buttonColor = "rgba(55,136,62,1.0)"
       this.withIcon= false
       this.isSelected = false
       this.iconColor = "rgb(255,255,255)"
