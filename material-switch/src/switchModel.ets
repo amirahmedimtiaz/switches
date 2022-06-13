@@ -25,7 +25,7 @@ export namespace switchModel {
       private isSelected: boolean = false
       private iconColor: string | Color | Resource = "rgb(255,255,255)"
       private borderColor: string | Color | Resource = "rgba(117,126,118,1.0)"
-      private isChecked: boolean = false
+      private isOn: boolean = false
 
     getSwitchId(): number {
       return this.switchId
@@ -141,21 +141,21 @@ export namespace switchModel {
       return this
     }
 
-    getIsChecked(): boolean {
-      return this.isChecked
+    getIsOn(): boolean {
+      return this.isOn
     }
 
-    setIsChecked(isChecked: boolean): Model {
-      if (isChecked != null) {
-        this.isChecked = isChecked
-        if (this.isChecked) {
+    setIsOn(isOn: boolean): Model {
+      if (isOn != null) {
+        this.isOn = isOn
+        if (this.isOn) {
           this.buttonColor1 = "rgb(255,255,255)"
           this.buttonColor2 = this.buttonColor
           this.iconColor = this.buttonColor
           this.buttonSize = 24
         }
       } else {
-        this.isChecked = false
+        this.isOn = false
       }
       return this
     }
@@ -170,7 +170,7 @@ export namespace switchModel {
       this.isSelected = false
       this.iconColor = "rgb(255,255,255)"
       this.borderColor = "rgba(117,126,118,1.0)"
-      this.isChecked = false
+      this.isOn = false
       return this
     }
   }

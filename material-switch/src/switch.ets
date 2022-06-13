@@ -19,7 +19,7 @@ import switchModel from "./switchModel"
 @Component
 export struct Switch {
   @State model: switchModel.Model = new switchModel.Model();
-  private onSelect: ((id: number) => void) = null
+  private onSelect: ((id: number , isOn: boolean) => void) = null
 
   build() {
     Shape() {
@@ -33,16 +33,16 @@ export struct Switch {
       if (this.model.getIsSelected()) {
         Circle()
           .width(38).height(38).fill("rgba(0,0,0,0.3)")
-          .offset({ x: this.model.getIsChecked() ? 17 : -3.5, y: -3 })
+          .offset({ x: this.model.getIsOn() ? 17 : -3.5, y: -3 })
       }
       Circle()
         .width(this.model.getIsSelected() ? 28 : this.model.getButtonSize())
         .height(this.model.getIsSelected() ? 28 : this.model.getButtonSize())
         .offset({
           x: this.model.getIsSelected() ?
-            (this.model.getIsChecked() ? 20 : 2)
+            (this.model.getIsOn() ? 20 : 2)
                                    :
-            (this.model.getIsChecked() ? 23 : 5),
+            (this.model.getIsOn() ? 23 : 5),
           y: this.model.getIsSelected() ? 2 : (16 - (this.model.getButtonSize()) / 2)
         })
         .fill(this.model.getButtonColor1())
@@ -50,18 +50,18 @@ export struct Switch {
         Path()
           .commands("M9 22l-10-10.598 2.798-2.859 7.149 7.473 13.144-14.016 2.909 2.806z")
           .fill(this.model.getIconColor())
-          .offset({ x: this.model.getIsChecked() ? 32 : 9, y: 13 })
+          .offset({ x: this.model.getIsOn() ? 32 : 9, y: 13 })
       }
     }.onClick(() => {
       this.model.setIsSelected(true)
       this.model.setButtonColor1("rgba(117,126,118,1.0)")
       if (this.onSelect != null) {
-        this.onSelect(this.model.getSwitchId());
+        this.onSelect(this.model.getSwitchId(),!this.model.getIsOn());
       }
       animateTo({
         duration: 100,
         onFinish: () => {
-          if (this.model.getIsChecked() == false) {
+          if (this.model.getIsOn() == false) {
             this.model.setButtonSize(16)
             this.model.setButtonColor1("rgba(117,126,118,1.0)")
           }
@@ -73,14 +73,14 @@ export struct Switch {
           this.model.setIsSelected(false)
         }
       }, () => {
-        if (this.model.getIsChecked() == false) {
-          this.model.setIsChecked(true)
+        if (this.model.getIsOn() == false) {
+          this.model.setIsOn(true)
           if (this.model.getWithIcon()) {
             this.model.setIconColor(this.model.getButtonColor())
           }
         }
         else {
-          this.model.setIsChecked(false)
+          this.model.setIsOn(false)
           this.model.setButtonColor2("rgba(216,216,216,1.0)")
           if (this.model.getWithIcon()) {
             this.model.setIconColor("rgba(255,255,255,1.0)")

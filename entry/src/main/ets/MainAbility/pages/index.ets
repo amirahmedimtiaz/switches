@@ -13,14 +13,14 @@ struct Index {
     this.model.setSwitchId(1)
     this.model.setButtonColor(null)
     this.model.setWithIcon(true)
-    this.model.setIsChecked(false)
+    this.model.setIsOn(false)
   }
   build() {
     Row() {
       Column() {
         Switch({
           model: this.model,
-          onSelect: (id) => {
+          onSelect: (id,isOn) => {
             prompt.showToast({
               message: id.toString()
             })
