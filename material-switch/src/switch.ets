@@ -21,74 +21,69 @@ export struct Switch {
   @State model: switchModel.Model = new switchModel.Model();
   private onSelect: ((id: number) => void) = null
 
-
   build() {
     Shape() {
       Button()
         .width(52)
         .height(32)
-        .backgroundColor(this.model.buttonColor2)
-        .borderColor(this.model.isSelected ? this.model.borderColor : this.model.buttonColor1)
+        .backgroundColor(this.model.getButtonColor2())
+        .borderColor(this.model.getIsSelected() ? this.model.getBorderColor() : this.model.getButtonColor1())
         .borderWidth(2)
         .borderRadius(2)
-      if (this.model.isSelected) {
+      if (this.model.getIsSelected()) {
         Circle()
           .width(38).height(38).fill("rgba(0,0,0,0.3)")
-          .offset({ x: this.model.shadowPosition - 6, y: -3 })
+          .offset({ x: this.model.getIsChecked() ? 17 : -3.5, y: -3 })
       }
-
       Circle()
-        .width(this.model.isSelected ? 28 : this.model.buttonSize)
-        .height(this.model.isSelected ? 28 : this.model.buttonSize)
+        .width(this.model.getIsSelected() ? 28 : this.model.getButtonSize())
+        .height(this.model.getIsSelected() ? 28 : this.model.getButtonSize())
         .offset({
-          x: this.model.isSelected ? this.model.buttonPositionX - 3 : this.model.buttonPositionX,
-          y: this.model.isSelected ? 2 : (16 - (this.model.buttonSize) / 2)
+          x: this.model.getIsSelected() ?
+            (this.model.getIsChecked() ? 20 : 2)
+                                   :
+            (this.model.getIsChecked() ? 23 : 5),
+          y: this.model.getIsSelected() ? 2 : (16 - (this.model.getButtonSize()) / 2)
         })
-        .fill(this.model.buttonColor1)
-      if (this.model.withIcon) {
+        .fill(this.model.getButtonColor1())
+      if (this.model.getWithIcon()) {
         Path()
           .commands("M9 22l-10-10.598 2.798-2.859 7.149 7.473 13.144-14.016 2.909 2.806z")
-          .fill(this.model.iconColor)
-          .offset({ x: this.model.iconPositionX, y: this.model.iconPositionY })
+          .fill(this.model.getIconColor())
+          .offset({ x: this.model.getIsChecked() ? 32 : 9, y: 13 })
       }
     }.onClick(() => {
-      this.model.isSelected = true
-      this.model.buttonColor1 = "rgba(117,126,118,1.0)"
+      this.model.setIsSelected(true)
+      this.model.setButtonColor1("rgba(117,126,118,1.0)")
       if (this.onSelect != null) {
-        this.onSelect(this.model.switchId);
+        this.onSelect(this.model.getSwitchId());
       }
       animateTo({
         duration: 100,
         onFinish: () => {
-          if (this.model.buttonPositionX == 5) {
-            this.model.buttonSize = 16
-            this.model.buttonColor1 = "rgba(117,126,118,1.0)"
-
+          if (this.model.getIsChecked() == false) {
+            this.model.setButtonSize(16)
+            this.model.setButtonColor1("rgba(117,126,118,1.0)")
           }
           else {
-            this.model.buttonSize = 24
-            this.model.buttonColor1 = "rgb(255,255,255)"
-            this.model.buttonColor2 = this.model.buttonColor
-//            "rgba(55,136,62,1.0)"
+            this.model.setButtonSize(24)
+            this.model.setButtonColor1("rgb(255,255,255)")
+            this.model.setButtonColor2(this.model.getButtonColor())
           }
-          this.model.isSelected = false
+          this.model.setIsSelected(false)
         }
       }, () => {
-        if (this.model.buttonPositionX == 5) {
-          this.model.buttonPositionX = 23
-          this.model.shadowPosition = 23
-          if (this.model.withIcon) {
-            this.model.iconPositionX = 32
-            this.model.iconColor = this.model.buttonColor
+        if (this.model.getIsChecked() == false) {
+          this.model.setIsChecked(true)
+          if (this.model.getWithIcon()) {
+            this.model.setIconColor(this.model.getButtonColor())
           }
         }
         else {
-          this.model.buttonPositionX = 5
-          this.model.shadowPosition = 2.5
-          this.model.buttonColor2 = "rgba(216,216,216,1.0)"
-          if (this.model.withIcon) {
-            this.model.iconPositionX = 9
-            this.model.iconColor = "rgba(255,255,255,1.0)"
+          this.model.setIsChecked(false)
+          this.model.setButtonColor2("rgba(216,216,216,1.0)")
+          if (this.model.getWithIcon()) {
+            this.model.setIconColor("rgba(255,255,255,1.0)")
           }
         }
       })

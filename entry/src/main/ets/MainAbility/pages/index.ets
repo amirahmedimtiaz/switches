@@ -13,6 +13,7 @@ struct Index {
     this.model.setSwitchId(1)
     this.model.setButtonColor(null)
     this.model.setWithIcon(true)
+    this.model.setIsChecked(false)
   }
   build() {
     Row() {
