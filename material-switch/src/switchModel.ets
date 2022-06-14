@@ -13,21 +13,22 @@
  * limitations under the License.
  */
 
+import { IconImageType } from './iconImageType'
 
 export namespace switchModel {
   export class Model {
-      private switchId: number = 0
-      private buttonSize: number = 16
-      private buttonColor1: string | Color | Resource = ""
-      private buttonColor2: string | Color | Resource = ""
-      private buttonColor: string | Color | Resource = "rgba(55,136,62,1.0)"
-      private withIcon: boolean = false
-      private isSelected: boolean = false
-      private iconColor: string | Color | Resource = "rgb(255,255,255)"
-      private borderColor: string | Color | Resource = "rgba(117,126,118,1.0)"
-      private isOn: boolean = false
-      private icon: string | Resource = "M9 22l-10-10.598 2.798-2.859 7.149 7.473 13.144-14.016 2.909 2.806z"
-
+    private switchId: number = 0
+    private buttonSize: number = 16
+    private buttonColor1: string | Color | Resource = ""
+    private buttonColor2: string | Color | Resource = ""
+    private buttonColor: string | Color | Resource = "rgba(55,136,62,1.0)"
+    private withIcon: boolean = false
+    private isSelected: boolean = false
+    private iconColor: string | Color | Resource = "rgb(255,255,255)"
+    private borderColor: string | Color | Resource = "rgba(117,126,118,1.0)"
+    private isOn: boolean = false
+    private icon: string | Resource = "M9 22l-10-10.598 2.798-2.859 7.149 7.473 13.144-14.016 2.909 2.806z"
+    private iconImageType: IconImageType = IconImageType.Path
     getSwitchId(): number {
       return this.switchId
     }
@@ -45,8 +46,8 @@ export namespace switchModel {
       return this.buttonSize
     }
 
-    setButtonSize(buttonSize:number): Model{
-      if(buttonSize!=null) this.buttonSize =buttonSize
+    setButtonSize(buttonSize: number): Model{
+      if (buttonSize != null) this.buttonSize = buttonSize
       else this.buttonSize = 16
       return this
     }
@@ -165,13 +166,22 @@ export namespace switchModel {
       return this.icon
     }
 
-    setIcon(icon: string | Resource):  Model {
-      if(icon!=null){
-        this.icon=icon
+    setIcon(icon: string | Resource): Model {
+      if (icon != null) {
+        this.icon = icon
       }
-      else{
+      else {
         this.icon = "M9 22l-10-10.598 2.798-2.859 7.149 7.473 13.144-14.016 2.909 2.806z"
       }
+      return this
+    }
+
+    getIconImageType(): IconImageType {
+      return this.iconImageType
+    }
+
+    setIconImageType(iconImageType: IconImageType): Model {
+      this.iconImageType = (iconImageType != null && iconImageType != undefined) ? iconImageType : IconImageType.Path;
       return this
     }
 
@@ -187,9 +197,12 @@ export namespace switchModel {
       this.borderColor = "rgba(117,126,118,1.0)"
       this.isOn = false
       this.icon = "M9 22l-10-10.598 2.798-2.859 7.149 7.473 13.144-14.016 2.909 2.806z"
+      this.iconImageType = IconImageType.Path
       return this
     }
   }
 }
+
+export { IconImageType }  from './iconImageType'
 
 export default switchModel

@@ -1,27 +1,31 @@
 import prompt from '@system.prompt';
-import { Switch ,switchModel }  from "@ohos/material-switch"
+import { Switch, switchModel, IconImageType }  from "@ohos/material-switch"
 
 @Entry
 @Component
 struct Index {
-  model: switchModel.Model = new switchModel.Model();
+  private model: switchModel.Model = new switchModel.Model();
+
   public aboutToAppear(): void {
     this.updateModelForFirst()
   }
+
   updateModelForFirst() {
     this.model.reset()
     this.model.setSwitchId(1)
     this.model.setButtonColor(null)
-    this.model.setWithIcon(false)
+    this.model.setWithIcon(true)
     this.model.setIsOn(true)
+    this.model.setIconImageType(IconImageType.Resource)
     this.model.setIcon($r('app.media.icon'))
   }
+
   build() {
     Row() {
       Column() {
         Switch({
           model: this.model,
-          onSelect: (id,isOn) => {
+          onSelect: (id, isOn) => {
             prompt.showToast({
               message: id.toString()
             })
