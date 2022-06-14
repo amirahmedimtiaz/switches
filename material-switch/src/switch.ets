@@ -71,7 +71,7 @@ export struct Switch {
         .borderColor(this.model.getIsSelected() ? this.model.getBorderColor() : this.model.getButtonColor1())
         .borderWidth(2)
         .borderRadius(2)
-        .opacity(this.model.getDisabled() ? 0.5 : 1)
+
       if (this.model.getIsSelected()) {
         Circle()
           .width(38).height(38).fill("rgba(0,0,0,0.3)")
@@ -88,24 +88,21 @@ export struct Switch {
           y: this.model.getIsSelected() ? 2 : (16 - (this.model.getButtonSize()) / 2)
         })
         .fill(this.model.getButtonColor1())
-        .opacity(this.model.getDisabled() ? 0.5 : 1)
       if (this.model.getWithIcon()) {
         if (this.model.getIconImageType() == IconImageType.Path) {
           Path()
             .commands(this.model.getIcon().toString())
             .fill(this.model.getIconColor())
             .offset({ x: this.model.getIsOn() ? 32 : 9, y: 13 })
-            .opacity(this.model.getDisabled() ? 0.5 : 1)
         }
         else {
           Image(this.model.getIcon())
             .width('10')
             .height('10')
             .offset({ x: this.model.getIsOn() ? 30 : 8, y: 11 })
-            .opacity(this.model.getDisabled() ? 0.5 : 1)
         }
       }
-    }.onClick(() => this.onClick()).padding(5)
+    }.onClick(() => this.onClick()).padding(5).opacity(this.model.getDisabled() ? 0.5 : 1)
   }
 }
 
