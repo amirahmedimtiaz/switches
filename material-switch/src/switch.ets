@@ -47,10 +47,18 @@ export struct Switch {
         })
         .fill(this.model.getButtonColor1())
       if (this.model.getWithIcon()) {
-        Path()
-          .commands("M9 22l-10-10.598 2.798-2.859 7.149 7.473 13.144-14.016 2.909 2.806z")
-          .fill(this.model.getIconColor())
-          .offset({ x: this.model.getIsOn() ? 32 : 9, y: 13 })
+        if(typeof this.model.getIcon() == "string"){
+          Path()
+            .commands(this.model.getIcon().toString())
+            .fill(this.model.getIconColor())
+            .offset({ x: this.model.getIsOn() ? 32 : 9, y: 13 })
+        }
+        else{
+          Image(this.model.getIcon())
+            .width('10')
+            .height('10')
+            .offset({ x: this.model.getIsOn() ? 30 : 8, y: 11 })
+        }
       }
     }.onClick(() => {
       this.model.setIsSelected(true)

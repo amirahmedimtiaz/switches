@@ -12,8 +12,9 @@ struct Index {
     this.model.reset()
     this.model.setSwitchId(1)
     this.model.setButtonColor(null)
-    this.model.setWithIcon(true)
-    this.model.setIsOn(false)
+    this.model.setWithIcon(false)
+    this.model.setIsOn(true)
+    this.model.setIcon($r('app.media.icon'))
   }
   build() {
     Row() {

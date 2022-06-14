@@ -26,6 +26,7 @@ export namespace switchModel {
       private iconColor: string | Color | Resource = "rgb(255,255,255)"
       private borderColor: string | Color | Resource = "rgba(117,126,118,1.0)"
       private isOn: boolean = false
+      private icon: string | Resource = "M9 22l-10-10.598 2.798-2.859 7.149 7.473 13.144-14.016 2.909 2.806z"
 
     getSwitchId(): number {
       return this.switchId
@@ -160,6 +161,20 @@ export namespace switchModel {
       return this
     }
 
+    getIcon(): string | Resource {
+      return this.icon
+    }
+
+    setIcon(icon: string | Resource):  Model {
+      if(icon!=null){
+        this.icon=icon
+      }
+      else{
+        this.icon = "M9 22l-10-10.598 2.798-2.859 7.149 7.473 13.144-14.016 2.909 2.806z"
+      }
+      return this
+    }
+
     reset(): Model {
       this.switchId = 0
       this.buttonSize = 16
@@ -171,6 +186,7 @@ export namespace switchModel {
       this.iconColor = "rgb(255,255,255)"
       this.borderColor = "rgba(117,126,118,1.0)"
       this.isOn = false
+      this.icon = "M9 22l-10-10.598 2.798-2.859 7.149 7.473 13.144-14.016 2.909 2.806z"
       return this
     }
   }
