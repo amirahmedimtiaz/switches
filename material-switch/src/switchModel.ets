@@ -39,7 +39,7 @@ export namespace switchModel {
       if (disabled == null || disabled == undefined) {
         this.disabled = false
       }
-      else this.disabled = true
+      else this.disabled = disabled
       return this
     }
 
