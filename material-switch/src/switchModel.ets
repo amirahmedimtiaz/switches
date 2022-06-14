@@ -29,6 +29,20 @@ export namespace switchModel {
     private isOn: boolean = false
     private icon: string | Resource = "M9 22l-10-10.598 2.798-2.859 7.149 7.473 13.144-14.016 2.909 2.806z"
     private iconImageType: IconImageType = IconImageType.Path
+    private disabled: boolean = false
+
+    getDisabled(): boolean{
+      return this.disabled
+    }
+
+    setDisabled(disabled: boolean): Model{
+      if (disabled == null || disabled == undefined) {
+        this.disabled = false
+      }
+      else this.disabled = true
+      return this
+    }
+
     getSwitchId(): number {
       return this.switchId
     }
@@ -198,6 +212,7 @@ export namespace switchModel {
       this.isOn = false
       this.icon = "M9 22l-10-10.598 2.798-2.859 7.149 7.473 13.144-14.016 2.909 2.806z"
       this.iconImageType = IconImageType.Path
+      this.disabled = false
       return this
     }
   }
