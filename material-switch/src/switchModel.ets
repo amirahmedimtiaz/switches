@@ -38,7 +38,7 @@ export namespace switchModel {
     }
 
     setOnBackgroundColor(onBackgroundColor: string | Color | Resource): Model {
-      if (onBackgroundColor != null) {
+      if (onBackgroundColor != null && onBackgroundColor!= undefined) {
         this.onBackgroundColor = onBackgroundColor
       } else {
         this.onBackgroundColor = "rgba(55,136,62,1.0)"
@@ -51,7 +51,7 @@ export namespace switchModel {
     }
 
     setOffBackgroundColor(offBackgroundColor: string | Color | Resource): Model {
-      if (offBackgroundColor != null) {
+      if (offBackgroundColor != null && offBackgroundColor!= undefined) {
         this.offBackgroundColor = offBackgroundColor
       } else {
         this.offBackgroundColor = "rgba(216,216,216,1.0)"
@@ -64,7 +64,7 @@ export namespace switchModel {
     }
 
     setOnCircleColor(onCircleColor: string | Color | Resource): Model {
-      if (onCircleColor != null) {
+      if (onCircleColor != null && onCircleColor!= undefined) {
         this.onCircleColor = onCircleColor
       } else {
         this.onCircleColor = Color.White
@@ -77,7 +77,7 @@ export namespace switchModel {
     }
 
     setOffCircleColor(offCircleColor: string | Color | Resource): Model {
-      if (offCircleColor != null) {
+      if (offCircleColor != null && offCircleColor!= undefined) {
         this.offCircleColor = offCircleColor
       } else {
         this.offCircleColor = "rgba(117,126,118,1.0)"
@@ -90,7 +90,7 @@ export namespace switchModel {
     }
 
     setOnBorderColor(onBorderColor: string | Color | Resource): Model {
-      if (onBorderColor != null) {
+      if (onBorderColor != null && onBorderColor!= undefined) {
         this.onBorderColor = onBorderColor
       } else {
         this.onBorderColor = "rgba(55,136,62,1.0)"
@@ -103,7 +103,7 @@ export namespace switchModel {
     }
 
     setOffBorderColor(offBorderColor: string | Color | Resource): Model {
-      if (offBorderColor != null) {
+      if (offBorderColor != null && offBorderColor!= undefined) {
         this.offBorderColor = offBorderColor
       } else {
         this.offBorderColor = "rgba(117,126,118,1.0)"
@@ -128,7 +128,7 @@ export namespace switchModel {
     }
 
     setSwitchId(switchId: number): Model {
-      if (switchId != null && switchId > -1) {
+      if (switchId != null && switchId > -1 && switchId!= undefined) {
         this.switchId = switchId
       } else {
         this.switchId = 0
@@ -141,7 +141,7 @@ export namespace switchModel {
     }
 
     setButtonSize(buttonSize: number): Model{
-      if (buttonSize != null) this.buttonSize = buttonSize
+      if (buttonSize != null && buttonSize!= undefined) this.buttonSize = buttonSize
       else this.buttonSize = 16
       return this
     }
@@ -151,7 +151,7 @@ export namespace switchModel {
     }
 
     setWithIcon(withIcon: boolean): Model {
-      if (withIcon != null) {
+      if (withIcon != null && withIcon!= undefined) {
         this.withIcon = withIcon
       } else {
         this.withIcon = false
@@ -164,7 +164,7 @@ export namespace switchModel {
     }
 
     setIsSelected(isSelected: boolean): Model {
-      if (isSelected != null) {
+      if (isSelected != null && isSelected!= undefined) {
         this.isSelected = isSelected
       } else {
         this.isSelected = false
@@ -177,7 +177,7 @@ export namespace switchModel {
     }
 
     setIsOn(isOn: boolean): Model {
-      if (isOn != null) {
+      if (isOn != null && isOn!= undefined) {
         this.isOn = isOn
         if (this.isOn) {
           this.buttonSize = 24
@@ -193,7 +193,7 @@ export namespace switchModel {
     }
 
     setIcon(icon: Resource): Model {
-      if (icon != null) {
+      if (icon != null && icon!= undefined) {
         this.icon = icon
       }
       else {
