@@ -22,11 +22,11 @@ export struct Switch {
   private onSelect: ((id: number, isOn: boolean) => void) = null
 
   private onClick() {
+    if (this.onSelect != null) {
+      this.onSelect(this.model.getSwitchId(),!this.model.getIsOn());
+    }
     if (this.model.getDisabled() == false) {
       this.model.setIsSelected(true)
-      if (this.onSelect != null) {
-        this.onSelect(this.model.getSwitchId(),!this.model.getIsOn());
-      }
       animateTo({
         duration: 100,
         onFinish: () => {
