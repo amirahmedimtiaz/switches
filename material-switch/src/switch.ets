@@ -14,7 +14,6 @@
  */
 
 import switchModel from "./switchModel"
-import  { IconImageType }  from './iconImageType'
 
 
 @Component
@@ -25,7 +24,6 @@ export struct Switch {
   private onClick() {
     if (this.model.getDisabled() == false) {
       this.model.setIsSelected(true)
-      this.model.setButtonColor1("rgba(117,126,118,1.0)")
       if (this.onSelect != null) {
         this.onSelect(this.model.getSwitchId(),!this.model.getIsOn());
       }
@@ -34,28 +32,18 @@ export struct Switch {
         onFinish: () => {
           if (this.model.getIsOn() == false) {
             this.model.setButtonSize(16)
-            this.model.setButtonColor1("rgba(117,126,118,1.0)")
           }
           else {
             this.model.setButtonSize(24)
-            this.model.setButtonColor1("rgb(255,255,255)")
-            this.model.setButtonColor2(this.model.getButtonColor())
           }
           this.model.setIsSelected(false)
         }
       }, () => {
         if (this.model.getIsOn() == false) {
           this.model.setIsOn(true)
-          if (this.model.getWithIcon()) {
-            this.model.setIconColor(this.model.getButtonColor())
-          }
         }
         else {
           this.model.setIsOn(false)
-          this.model.setButtonColor2("rgba(216,216,216,1.0)")
-          if (this.model.getWithIcon()) {
-            this.model.setIconColor("rgba(255,255,255,1.0)")
-          }
         }
       })
     }
@@ -67,8 +55,8 @@ export struct Switch {
       Button()
         .width(52)
         .height(32)
-        .backgroundColor(this.model.getButtonColor2())
-        .borderColor(this.model.getIsSelected() ? this.model.getBorderColor() : this.model.getButtonColor1())
+        .backgroundColor(this.model.getIsOn() ? this.model.getOnBackgroundColor() : this.model.getOffBackgroundColor())
+        .borderColor(this.model.getIsOn() ? this.model.getOnBorderColor() : this.model.getOffBorderColor())
         .borderWidth(2)
         .borderRadius(2)
 
@@ -87,25 +75,15 @@ export struct Switch {
             (this.model.getIsOn() ? 23 : 5),
           y: this.model.getIsSelected() ? 2 : (16 - (this.model.getButtonSize()) / 2)
         })
-        .fill(this.model.getButtonColor1())
+        .fill(this.model.getIsOn() ? this.model.getOnCircleColor() : this.model.getOffCircleColor())
       if (this.model.getWithIcon()) {
-        if (this.model.getIconImageType() == IconImageType.Path) {
-          Path()
-            .commands(this.model.getIcon().toString())
-            .fill(this.model.getIconColor())
-            .offset({ x: this.model.getIsOn() ? 32 : 9, y: 13 })
-        }
-        else {
-          Image(this.model.getIcon())
-            .width('10')
-            .height('10')
-            .offset({ x: this.model.getIsOn() ? 30 : 8, y: 11 })
-        }
+        Image(this.model.getIcon())
+          .width('10')
+          .height('10')
+          .offset({ x: this.model.getIsOn() ? 30 : 8, y: 11 })
       }
     }.onClick(() => this.onClick()).padding(5).opacity(this.model.getDisabled() ? 0.5 : 1)
   }
 }
 
 export { switchModel } from "./switchModel";
-
-export { IconImageType }  from './iconImageType'

@@ -46,10 +46,8 @@ Switch({
 ```
     this.model.reset()
     this.model.setSwitchId(1)
-    this.model.setButtonColor(Color.Red)
     this.model.setWithIcon(true)
     this.model.setIsOn(true)
-    this.model.setIconImageType(IconImageType.Resource)
     this.model.setIcon($r('app.media.icon'))
 
 Switch({

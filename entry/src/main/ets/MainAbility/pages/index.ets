@@ -1,5 +1,5 @@
 import prompt from '@system.prompt';
-import { Switch, switchModel, IconImageType }  from "@ohos/material-switch"
+import { Switch, switchModel }  from "@ohos/material-switch"
 
 @Entry
 @Component
@@ -13,12 +13,12 @@ struct Index {
   updateModelForFirst() {
     this.model.reset()
     this.model.setSwitchId(1)
-    this.model.setButtonColor(null)
-    this.model.setWithIcon(false)
-    this.model.setIsOn(false)
-    this.model.setIconImageType(IconImageType.Resource)
-    this.model.setIcon($r('app.media.icon'))
-    this.model.setDisabled(true)
+    this.model.setOnBackgroundColor(Color.Red)
+    this.model.setOnBorderColor(Color.Red)
+    this.model.setWithIcon(true)
+    this.model.setIsOn(true)
+    this.model.setIcon($r('app.media.tick'))
+    this.model.setDisabled(false)
   }
 
   build() {
