@@ -26,17 +26,17 @@ export struct Switch {
       this.onSelect(this.model.getSwitchId(),!this.model.getIsOn());
     }
     if (this.model.getDisabled() == false) {
-      this.model.setIsSelected(true)
+      this.model.setShowAnimation(true)
       animateTo({
         duration: 100,
         onFinish: () => {
           if (this.model.getIsOn() == false) {
-            this.model.setButtonSize(16)
+            this.model.setSwitchSize(16)
           }
           else {
-            this.model.setButtonSize(24)
+            this.model.setSwitchSize(24)
           }
-          this.model.setIsSelected(false)
+          this.model.setShowAnimation(false)
         }
       }, () => {
         if (this.model.getIsOn() == false) {
@@ -60,20 +60,20 @@ export struct Switch {
         .borderWidth(2)
         .borderRadius(2)
 
-      if (this.model.getIsSelected()) {
+      if (this.model.getShowAnimation()) {
         Circle()
           .width(38).height(38).fill("rgba(0,0,0,0.3)")
           .offset({ x: this.model.getIsOn() ? 17 : -3.5, y: -3 })
       }
       Circle()
-        .width(this.model.getIsSelected() ? 28 : this.model.getButtonSize())
-        .height(this.model.getIsSelected() ? 28 : this.model.getButtonSize())
+        .width(this.model.getShowAnimation() ? 28 : this.model.getSwitchSize())
+        .height(this.model.getShowAnimation() ? 28 : this.model.getSwitchSize())
         .offset({
-          x: this.model.getIsSelected() ?
+          x: this.model.getShowAnimation() ?
             (this.model.getIsOn() ? 20 : 2)
                                         :
             (this.model.getIsOn() ? 23 : 5),
-          y: this.model.getIsSelected() ? 2 : (16 - (this.model.getButtonSize()) / 2)
+          y: this.model.getShowAnimation() ? 2 : (16 - (this.model.getSwitchSize()) / 2)
         })
         .fill(this.model.getIsOn() ? this.model.getOnCircleColor() : this.model.getOffCircleColor())
       if (this.model.getWithIcon()) {

@@ -16,9 +16,9 @@
 export namespace switchModel {
   export class Model {
     private switchId: number = 0
-    private buttonSize: number = 16
+    private switchSize: number = 16
     private withIcon: boolean = false
-    private isSelected: boolean = false
+    private showAnimation: boolean = false
     private isOn: boolean = false
     private icon: Resource = $r('app.media.tick')
     private disabled: boolean = false
@@ -136,13 +136,13 @@ export namespace switchModel {
       return this
     }
 
-    getButtonSize(): number{
-      return this.buttonSize
+    getSwitchSize(): number{
+      return this.switchSize
     }
 
-    setButtonSize(buttonSize: number): Model{
-      if (buttonSize != null && buttonSize!= undefined) this.buttonSize = buttonSize
-      else this.buttonSize = 16
+    setSwitchSize(switchSize: number): Model{
+      if (switchSize != null && switchSize!= undefined) this.switchSize = switchSize
+      else this.switchSize = 16
       return this
     }
 
@@ -159,15 +159,15 @@ export namespace switchModel {
       return this
     }
 
-    getIsSelected(): boolean {
-      return this.isSelected
+    getShowAnimation(): boolean {
+      return this.showAnimation
     }
 
-    setIsSelected(isSelected: boolean): Model {
-      if (isSelected != null && isSelected!= undefined) {
-        this.isSelected = isSelected
+    setShowAnimation(showAnimation: boolean): Model {
+      if (showAnimation != null && showAnimation!= undefined) {
+        this.showAnimation = showAnimation
       } else {
-        this.isSelected = false
+        this.showAnimation = false
       }
       return this
     }
@@ -180,7 +180,7 @@ export namespace switchModel {
       if (isOn != null && isOn!= undefined) {
         this.isOn = isOn
         if (this.isOn) {
-          this.buttonSize = 24
+          this.switchSize = 24
         }
       } else {
         this.isOn = false
@@ -204,9 +204,9 @@ export namespace switchModel {
 
     reset(): Model {
       this.switchId = 0
-      this.buttonSize = 16
+      this.switchSize = 16
       this.withIcon = false
-      this.isSelected = false
+      this.showAnimation = false
       this.isOn = false
       this.icon = $r('app.media.tick')
       this.disabled = false
